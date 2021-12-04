@@ -2,12 +2,12 @@
 
 ## Zespół projektowy
 
-Zespół pracował w ramach kursu [CodersCamp](CodersCamp.pl).
+Zespół pracował w ramach kursu [CodersCamp](https://www.coderscamp.pl/).
 Aplikację wykonali uczestnicy kursu przy pomocy mentora.
 Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z ich portfolio.
 
-**Mentor**: [Jan Owsiany](github.com/janowsiany)
+**Mentor**: [Jan Owsiany](https://github.com/janowsiany)
 
 **Uczestnicy**:
 
-- [Aleksandra Aleksandrowicz](github.com/coderscamp-aleksandra)
+- [Aleksandra Aleksandrowicz](https://github.com/coderscamp-aleksandra)
