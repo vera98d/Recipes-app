@@ -15,3 +15,4 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 - [Jacek Mickiewicz](https://github.com/JaCoWymowny)
 - [Magdalena Kita](https://github.com/MagdalenaKita)
 - [Szymon Wilk](https://github.com/stimon27)
+- [Natalia Mateusiak](https://github.com/natimati)
