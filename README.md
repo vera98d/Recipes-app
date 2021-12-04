@@ -11,3 +11,4 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 **Uczestnicy**:
 
 - [Maciej Wójcik](https://github.com/cherrycoke2l)
+- [Jacek Mickiewicz](https://github.com/JaCoWymowny)
