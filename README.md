@@ -10,4 +10,4 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 
 **Uczestnicy**:
 
-- [Aleksandra Aleksandrowicz](https://github.com/coderscamp-aleksandra)
+- [Maciej Wójcik](https://github.com/cherrycoke2l)
