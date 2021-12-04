@@ -13,4 +13,5 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 - [Weronika Luteńko](https://github.com/vera98d/)
 - [Maciej Wójcik](https://github.com/cherrycoke2l)
 - [Jacek Mickiewicz](https://github.com/JaCoWymowny)
+- [Magdalena Kita](https://github.com/MagdalenaKita)
 - [Szymon Wilk](https://github.com/stimon27)
