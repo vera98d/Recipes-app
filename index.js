@@ -1,0 +1,104 @@
+class LatestRecipesComponent {
+  constructor() {
+    this.ref = document.querySelector(".latestRecipes");
+  }
+
+  render(props) {
+    this.currentPage = 1;
+
+    this.ref.style.display = "flex";
+    this.ref.style.flexDirection = "column";
+    this.ref.style.padding = "20px 10px";
+
+    this.ref.innerHTML = `
+        <h3>Your latest recipes</h3>
+        <div class='recipesListContainer'></div>
+        <div class='paginationContainer'></div>
+        `;
+
+    const recipesListContainer = this.ref.querySelector(
+      ".recipesListContainer"
+    );
+    recipesListContainer.style.display = "flex";
+    recipesListContainer.style.flexDirection = "column";
+
+    const paginationContainer = this.ref.querySelector(".paginationContainer");
+    paginationContainer.style.display = "flex";
+    paginationContainer.style.justifyContent = "space-between";
+
+    this.#renderRecipesList(props, recipesListContainer);
+    this.#renderPagination(props, paginationContainer, recipesListContainer);
+  }
+
+  #renderRecipesList(props, recipesListContainer) {
+    recipesListContainer.innerHTML = "";
+
+    const recipesList = document.createElement("ul");
+    recipesListContainer.appendChild(recipesList);
+
+    for (
+      let i = (this.currentPage - 1) * 7;
+      i < this.currentPage * 7 && i < props.latestRecipes.length;
+      i++
+    ) {
+      const recipesListItem = document.createElement("li");
+      recipesList.appendChild(recipesListItem);
+      const recipesListItemLink = document.createElement("a");
+      recipesListItemLink.innerText = props.latestRecipes[i].title;
+      recipesListItemLink.href = "#";
+      recipesListItem.appendChild(recipesListItemLink);
+    }
+  }
+
+  #renderPagination(props, paginationContainer, recipesListContainer) {
+    const leftButton = document.createElement("button");
+    leftButton.setAttribute("type", "button");
+    leftButton.innerHTML = '<i class="fa-solid fa-square-left"></i>';
+    paginationContainer.appendChild(leftButton);
+
+    const pageInfo = document.createElement("p");
+    pageInfo.style.display = "inline";
+    paginationContainer.appendChild(pageInfo);
+
+    const rightButton = document.createElement("button");
+    rightButton.setAttribute("type", "button");
+    rightButton.innerHTML = '<i class="fa-solid fa-square-right"></i>';
+    paginationContainer.appendChild(rightButton);
+
+    leftButton.addEventListener("click", (event) => {
+      this.currentPage -= 1;
+      this.#renderRecipesList(props, recipesListContainer);
+      this.#handlePageChange(
+        leftButton,
+        rightButton,
+        pageInfo,
+        Math.ceil(props.latestRecipes.length / 7)
+      );
+    });
+
+    rightButton.addEventListener("click", (event) => {
+      this.currentPage += 1;
+      this.#renderRecipesList(props, recipesListContainer);
+      this.#handlePageChange(
+        leftButton,
+        rightButton,
+        pageInfo,
+        Math.ceil(props.latestRecipes.length / 7)
+      );
+    });
+
+    this.#handlePageChange(
+      leftButton,
+      rightButton,
+      pageInfo,
+      Math.ceil(props.latestRecipes.length / 7)
+    );
+  }
+
+  #handlePageChange(leftButton, rightButton, pageInfo, maxPage) {
+    leftButton.disabled = this.currentPage === 1;
+    rightButton.disabled = this.currentPage === maxPage;
+
+    pageInfo.innerText = `Page ${this.currentPage} of ${maxPage}`;
+  }
+}
