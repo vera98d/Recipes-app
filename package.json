@@ -10,6 +10,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
+    "build:gh": "parcel build --public-url https://coderscamp2021.github.io/team-jo-project-1/",
     "prepare": "husky install"
   },
   "devDependencies": {
