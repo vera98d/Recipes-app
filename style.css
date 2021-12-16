@@ -222,3 +222,47 @@ footer {
     --basicFontSize: 18px;
   }
 }
+
+.addIngredient {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.addIngredient:focus {
+  border-radius: 8px;
+  outline: none;
+}
+
+.submitButton {
+  height: 50px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: 0px;
+  display: block;
+}
+
+i.fas.fa-backspace {
+  color: var(--orange);
+}
+
+.listElement {
+  border-radius: 8px;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: white;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.removeButton {
+  display: flex;
+  padding: 5px;
+  background-color: transparent;
+}

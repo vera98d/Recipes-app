@@ -1,3 +1,8 @@
+import CurrentRecipe from "./src/components/CurrentRecipe.js";
+
+const recipe = new CurrentRecipe();
+recipe.render({ currentRecipe: { ingredients: ["orange", "potato"] } });
+
 class LatestRecipesComponent {
   constructor() {
     this.ref = document.querySelector(".latestRecipes");
