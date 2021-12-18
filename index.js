@@ -1,4 +1,11 @@
 import CurrentRecipe from "./src/components/CurrentRecipe.js";
+import Header from "./src/components/Header.js";
+import Timer from "./src/components/Timer.js";
+
+const header = new Header();
+header.render();
+const timer = new Timer();
+timer.render();
 
 const recipe = new CurrentRecipe();
 recipe.render({ currentRecipe: { ingredients: ["orange", "potato"] } });
