@@ -4,7 +4,15 @@ class RecipesStorage {
   }
 
   load() {
-    return JSON.parse(window.localStorage.getItem("recipes"));
+    return JSON.parse(window.localStorage.getItem("recipes")) || [];
+  }
+
+  plugInStore(store) {
+    store.onChange((props) => {
+      if (props.latestRecipes && props.latestRecipes.length > 0) {
+        this.save(props.latestRecipes);
+      }
+    });
   }
 }
 
