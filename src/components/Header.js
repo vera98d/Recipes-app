@@ -6,7 +6,10 @@ class Header {
   render(props) {
     const img = document.createElement("img");
     img.id = "logo";
-    img.src = new URL("logo.png?as=webp&width=250", import.meta.url);
+    img.src = new URL(
+      "../../assets/images/logo.png?as=webp&width=250",
+      import.meta.url
+    );
     img.alt = "Logo";
     this.ref.appendChild(img);
 
