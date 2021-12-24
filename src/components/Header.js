@@ -4,10 +4,16 @@ class Header {
   }
 
   render(props) {
-    this.ref.innerHTML = `
-      <img id="logo" src="/src/components/logo.png" />
-      <h1 id="titleText">Lorem ipsum dolor sit amet.</h1>
-  `;
+    const img = document.createElement("img");
+    img.id = "logo";
+    img.src = new URL("logo.png?as=webp&width=250", import.meta.url);
+    img.alt = "Logo";
+    this.ref.appendChild(img);
+
+    const title = document.createElement("h1");
+    title.id = "titleText";
+    title.textContent = "Choose the ingredients and create a recipe";
+    this.ref.appendChild(title);
   }
 }
 
