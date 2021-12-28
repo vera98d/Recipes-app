@@ -1,6 +1,11 @@
 export default class LatestRecipesComponent {
-  constructor() {
+  constructor(store) {
     this.ref = document.querySelector(".latestRecipes");
+    store.onChange((props) => {
+      if (props.latestRecipes && props.latestRecipes.length > 0) {
+        this.render(props);
+      }
+    });
   }
 
   render(props) {
