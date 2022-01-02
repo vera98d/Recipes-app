@@ -1,6 +1,7 @@
 {
   "name": "team-jo-project-1",
   "private": "true",
+  "type": "module",
   "version": "1.0.0",
   "description": "CodersCamp 2021 - Team Jan Owsiany - Project 1",
   "source": "index.html",
@@ -11,10 +12,12 @@
     "start": "parcel",
     "build": "parcel build",
     "build:gh": "parcel build --public-url https://coderscamp2021.github.io/team-jo-project-1/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "devDependencies": {
     "husky": "7.0.4",
+    "jest": "^27.4.5",
     "lint-staged": "12.1.2",
     "parcel": "2.0.1",
     "prettier": "2.5.0",
@@ -22,5 +25,9 @@
   },
   "lint-staged": {
     "**/*.{js,css,html,md,json}": "prettier --write"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom"
   }
 }
