@@ -232,14 +232,27 @@ const listOfIngredients = [
   },
 ];
 
+function debounce(func, timeout) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
 class Ingredients {
   constructor(store) {
     this.ref = document.querySelector(".ingredientsGrid");
     this.store = store;
+    const debouncedRender = debounce(this.render.bind(this), 1000);
+    window.addEventListener("resize", debouncedRender);
+    this.memory = {};
   }
 
   addIngredient() {
-    const random = Math.floor(Math.random() * listOfIngredients.length);
+    const random = this.getUniqueIngredientIndex();
     const itemOfIngredients = document.createElement("div");
     itemOfIngredients.classList.add("image");
     itemOfIngredients.innerHTML = `
@@ -258,16 +271,26 @@ class Ingredients {
       });
     });
     this.ref.appendChild(itemOfIngredients);
-    listOfIngredients.splice(random, 1);
   }
 
   render() {
+    this.ref.innerHTML = "";
+    this.memory = {};
     let breakPoint = window.matchMedia("(max-width: 480px)");
     const numberOfElements = breakPoint.matches ? 4 : 9;
 
     for (let i = 0; i < numberOfElements; i++) {
       this.addIngredient();
     }
+  }
+
+  getUniqueIngredientIndex() {
+    const i = Math.floor(Math.random() * listOfIngredients.length);
+    if (!this.memory[i]) {
+      this.memory[i] = true;
+      return i;
+    }
+    return this.getUniqueIngredientIndex();
   }
 }
 
