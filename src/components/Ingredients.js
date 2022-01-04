@@ -233,8 +233,9 @@ const listOfIngredients = [
 ];
 
 class Ingredients {
-  constructor() {
+  constructor(store) {
     this.ref = document.querySelector(".ingredientsGrid");
+    this.store = store;
   }
 
   addIngredient() {
@@ -245,6 +246,17 @@ class Ingredients {
         <img src='${listOfIngredients[random].imageSrc}' alt="${listOfIngredients[random].title}" />
         <span>${listOfIngredients[random].title}</span>
         `;
+
+    itemOfIngredients.addEventListener("click", () => {
+      this.store.dispatch((oldState) => {
+        const ingredient = listOfIngredients[random].title;
+        const ingredients = oldState.currentRecipe.ingredients;
+        if (!ingredients.includes(ingredient) && ingredient) {
+          oldState.currentRecipe.ingredients.push(ingredient);
+        }
+        return oldState;
+      });
+    });
     this.ref.appendChild(itemOfIngredients);
     listOfIngredients.splice(random, 1);
   }

@@ -13,21 +13,24 @@ header.render();
 const timer = new Timer();
 timer.render();
 
-const ingredients = new Ingredients();
-ingredients.render();
-
-const recipe = new CurrentRecipe();
-recipe.render({ currentRecipe: { ingredients: ["orange", "potato"] } });
-
 const recipesStorage = new RecipesStorage();
 const latestRecipes = recipesStorage.load();
-const store = new Store({ latestRecipes: latestRecipes });
+const store = new Store({
+  latestRecipes: latestRecipes,
+  currentRecipe: { ingredients: [] },
+});
 recipesStorage.plugInStore(store);
 
 const tokenInfo = new TokenInfo(store);
 tokenInfo.render({ token: store.state.token });
 
 const fetchService = new SpoonacularService(store);
+
+const ingredients = new Ingredients(store);
+ingredients.render(store.state);
+
+const currentRecipe = new CurrentRecipe(store);
+currentRecipe.render(store.state);
 
 const latestRecipesComponent = new LatestRecipesComponent(store);
 latestRecipesComponent.render({ latestRecipes });

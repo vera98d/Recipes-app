@@ -1,6 +1,10 @@
 class CurrentRecipe {
-  constructor() {
+  constructor(store) {
     this.ref = document.getElementById("ingredientsList");
+    this.store = store;
+    store.onChange((props) => {
+      this.render(props);
+    });
   }
 
   addNewListElement(ingredientName) {
@@ -17,15 +21,27 @@ class CurrentRecipe {
     removeButton.classList.add("removeButton");
     removeIcon.classList.add("fas");
     removeIcon.classList.add("fa-backspace");
-
     const onRemoveButtonClick = () => {
-      this.list.removeChild(listElement);
+      this.store.dispatch((oldState) => {
+        oldState = {
+          ...oldState,
+          currentRecipe: {
+            ...oldState.currentRecipe,
+            ingredients: oldState.currentRecipe.ingredients.filter(
+              (ingredient) => {
+                return ingredient !== ingredientName;
+              }
+            ),
+          },
+        };
+        return oldState;
+      });
     };
 
     removeButton.addEventListener("click", onRemoveButtonClick);
   }
 
-  renderInput() {
+  renderInput(props) {
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", "Type ingredient and press enter");
@@ -34,16 +50,24 @@ class CurrentRecipe {
     const addListElement = (event) => {
       if (event.key === "Enter") {
         this.addNewListElement(input.value);
+        const currentIngredient = input.value;
         input.value = "";
+        if (props.currentRecipe.ingredients.includes(currentIngredient)) {
+          return;
+        }
+        this.store.dispatch((oldState) => {
+          oldState.currentRecipe.ingredients.push(currentIngredient);
+          return oldState;
+        });
       }
     };
+
     input.addEventListener("keyup", addListElement);
   }
 
   renderList(ingredients) {
     this.list = document.createElement("ul");
     this.ref.appendChild(this.list);
-
     ingredients.forEach((ingredient) => {
       this.addNewListElement(ingredient);
     });
@@ -58,7 +82,8 @@ class CurrentRecipe {
   }
 
   render(props) {
-    this.renderInput();
+    this.ref.innerHTML = "";
+    this.renderInput(props);
     this.renderList(props.currentRecipe.ingredients);
     this.renderSubmitButton();
   }
