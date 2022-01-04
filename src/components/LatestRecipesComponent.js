@@ -1,6 +1,7 @@
 export default class LatestRecipesComponent {
   constructor(store) {
     this.ref = document.querySelector(".latestRecipes");
+    this.store = store;
     store.onChange((props) => {
       if (props.latestRecipes && props.latestRecipes.length > 0) {
         this.render(props);
@@ -51,6 +52,13 @@ export default class LatestRecipesComponent {
       const recipesListItemLink = document.createElement("a");
       recipesListItemLink.innerText = props.latestRecipes[i].title;
       recipesListItemLink.href = "#";
+
+      recipesListItemLink.addEventListener("click", (event) => {
+        this.store.dispatch((state) => {
+          return { ...state, modal: props.latestRecipes[i] };
+        });
+      });
+
       recipesListItem.appendChild(recipesListItemLink);
     }
   }

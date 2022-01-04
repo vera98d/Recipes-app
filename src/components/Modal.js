@@ -1,6 +1,20 @@
 export default class Modal {
-  constructor() {
+  constructor(store) {
     this.ref = document.body;
+    this.store = store;
+    this.isActive = false;
+
+    this.store.onChange((state) => {
+      if (state.modal && !this.isActive) {
+        this.render(state.modal);
+        this.isActive = true;
+      }
+
+      if (!state.modal && this.isActive) {
+        this.#close();
+        this.isActive = false;
+      }
+    });
   }
 
   render(props) {
@@ -39,13 +53,9 @@ export default class Modal {
     const closeButton = document.createElement("button");
     closeButton.innerHTML = '<i class="far fa-times-circle"></i>';
     closeButton.addEventListener("click", (event) => {
-      this.ref.querySelector("header").classList.toggle("modalActive");
-      this.ref.querySelector("main").classList.toggle("modalActive");
-      this.ref.querySelector("footer").classList.toggle("modalActive");
-      modal.classList.toggle("modalActive");
-      setTimeout(() => {
-        modal.remove();
-      }, 500);
+      this.store.dispatch(({ modal, ...restOfState }) => {
+        return restOfState;
+      });
     });
     modal.appendChild(closeButton);
 
@@ -55,5 +65,18 @@ export default class Modal {
       this.ref.querySelector("footer").classList.toggle("modalActive");
       modal.classList.toggle("modalActive");
     }, 100);
+  }
+
+  #close() {
+    const modal = this.ref.querySelector(".modal");
+
+    this.ref.querySelector("header").classList.toggle("modalActive");
+    this.ref.querySelector("main").classList.toggle("modalActive");
+    this.ref.querySelector("footer").classList.toggle("modalActive");
+    modal.classList.toggle("modalActive");
+
+    setTimeout(() => {
+      modal.remove();
+    }, 500);
   }
 }

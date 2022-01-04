@@ -5,6 +5,7 @@ import LatestRecipesComponent from "./src/components/LatestRecipesComponent.js";
 import Ingredients from "./src/components/Ingredients.js";
 import RecipesStorage from "./src/storage/recipes.js";
 import Store from "./src/storage/store.js";
+import Modal from "./src/components/modal.js";
 import SpoonacularService from "./src/services/SpoonacularService.js";
 import TokenInfo from "./src/components/TokenInfo.js";
 
@@ -34,3 +35,5 @@ currentRecipe.render(store.state);
 
 const latestRecipesComponent = new LatestRecipesComponent(store);
 latestRecipesComponent.render({ latestRecipes });
+
+const modal = new Modal(store);
