@@ -34,7 +34,7 @@ const currentRecipe = new CurrentRecipe(store, (ingredients) => {
   fetchService.findRecipesByIngredients(ingredients).then((data) => {
     store.dispatch((props) => ({
       ...props,
-      latestRecipes: [...latestRecipes, data[0]],
+      latestRecipes: [...props.latestRecipes, data[0]],
       modal: data[0],
       currentRecipe: { ingredients: [] },
     }));

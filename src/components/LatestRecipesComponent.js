@@ -16,24 +16,34 @@ export default class LatestRecipesComponent {
     this.ref.style.flexDirection = "column";
     this.ref.style.padding = "20px 10px";
 
-    this.ref.innerHTML = `
-          <h3>Your latest recipes</h3>
-          <div class='recipesListContainer'></div>
-          <div class='paginationContainer'></div>
-          `;
+    if (props.latestRecipes.length > 7) {
+      this.ref.innerHTML = `
+        <h3>Your latest recipes</h3>
+        <div class='recipesListContainer'></div>
+        <div class='paginationContainer'></div>
+        `;
+    } else {
+      this.ref.innerHTML = `
+        <h3>Your latest recipes</h3>
+        <div class='recipesListContainer'></div>
+        `;
+    }
 
     const recipesListContainer = this.ref.querySelector(
       ".recipesListContainer"
     );
     recipesListContainer.style.display = "flex";
     recipesListContainer.style.flexDirection = "column";
-
-    const paginationContainer = this.ref.querySelector(".paginationContainer");
-    paginationContainer.style.display = "flex";
-    paginationContainer.style.justifyContent = "space-between";
-
     this.#renderRecipesList(props, recipesListContainer);
-    this.#renderPagination(props, paginationContainer, recipesListContainer);
+
+    if (props.latestRecipes.length > 7) {
+      const paginationContainer = this.ref.querySelector(
+        ".paginationContainer"
+      );
+      paginationContainer.style.display = "flex";
+      paginationContainer.style.justifyContent = "space-between";
+      this.#renderPagination(props, paginationContainer, recipesListContainer);
+    }
   }
 
   #renderRecipesList(props, recipesListContainer) {
@@ -66,7 +76,7 @@ export default class LatestRecipesComponent {
   #renderPagination(props, paginationContainer, recipesListContainer) {
     const leftButton = document.createElement("button");
     leftButton.setAttribute("type", "button");
-    leftButton.innerHTML = '<i class="fa-solid fa-square-left"></i>';
+    leftButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
     paginationContainer.appendChild(leftButton);
 
     const pageInfo = document.createElement("p");
@@ -75,7 +85,7 @@ export default class LatestRecipesComponent {
 
     const rightButton = document.createElement("button");
     rightButton.setAttribute("type", "button");
-    rightButton.innerHTML = '<i class="fa-solid fa-square-right"></i>';
+    rightButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
     paginationContainer.appendChild(rightButton);
 
     leftButton.addEventListener("click", (event) => {
