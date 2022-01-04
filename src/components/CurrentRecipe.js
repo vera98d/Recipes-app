@@ -74,15 +74,16 @@ class CurrentRecipe {
     });
   }
 
-  renderSubmitButton(ingredients) {
+  renderSubmitButton(props) {
     const submitButton = document.createElement("button");
     submitButton.setAttribute("type", "button");
     submitButton.innerText = "Submit";
     submitButton.classList.add("submitButton");
-    submitButton.disabled = ingredients.length === 0;
+    submitButton.disabled =
+      props.currentRecipe.ingredients.length === 0 || !props.token;
     this.ref.appendChild(submitButton);
     submitButton.addEventListener("click", () => {
-      this.onSubmit(ingredients);
+      this.onSubmit(props.currentRecipe.ingredients);
     });
   }
 
@@ -90,7 +91,7 @@ class CurrentRecipe {
     this.ref.innerHTML = "";
     this.renderInput(props);
     this.renderList(props.currentRecipe.ingredients);
-    this.renderSubmitButton(props.currentRecipe.ingredients);
+    this.renderSubmitButton(props);
   }
 }
 
