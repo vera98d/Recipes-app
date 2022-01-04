@@ -16,6 +16,7 @@ class SpoonacularService {
     url += `?apiKey=${this.apiKey}`;
     url += `&ingredients=${ingredients.join(",")}`;
     url += "&includeInstruction=true";
+    url += "&number=1";
     const response = await fetch(url);
     const data = await response.json();
     return data.map(({ id }) => id);

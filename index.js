@@ -30,7 +30,16 @@ const fetchService = new SpoonacularService(store);
 const ingredients = new Ingredients(store);
 ingredients.render(store.state);
 
-const currentRecipe = new CurrentRecipe(store);
+const currentRecipe = new CurrentRecipe(store, (ingredients) => {
+  fetchService.findRecipesByIngredients(ingredients).then((data) => {
+    store.dispatch((props) => ({
+      ...props,
+      latestRecipes: [...latestRecipes, data[0]],
+      modal: data[0],
+      currentRecipe: { ingredients: [] },
+    }));
+  });
+});
 currentRecipe.render(store.state);
 
 const latestRecipesComponent = new LatestRecipesComponent(store);
