@@ -31,7 +31,7 @@ export default class Modal {
     modal.appendChild(title);
 
     const description = document.createElement("p");
-    description.innerText = props.description;
+    description.innerHTML = props.description;
     description.style.textAlign = "center";
     modal.appendChild(description);
 

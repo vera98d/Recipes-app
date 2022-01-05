@@ -376,7 +376,7 @@ footer.modalActive {
   .modal ul,
   .modal li {
     font-size: 2rem;
-    line-height: 1rem;
+    line-height: 2rem;
     margin-bottom: 30px;
   }
 
