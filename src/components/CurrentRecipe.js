@@ -50,12 +50,12 @@ class CurrentRecipe {
     input.classList.add("addIngredient");
     const addListElement = (event) => {
       if (event.key === "Enter") {
-        this.addNewListElement(input.value);
         const currentIngredient = input.value;
         input.value = "";
         if (props.currentRecipe.ingredients.includes(currentIngredient)) {
           return;
         }
+        this.addNewListElement(input.value);
         this.store.dispatch((oldState) => {
           oldState.currentRecipe.ingredients.push(currentIngredient);
           return oldState;
