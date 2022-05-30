@@ -1,4 +1,4 @@
-# Coders Camp 2021 | Team Project | Recipes-app
+# Recipes-app |  Team Project | Coders Camp 2021
 This is a project where you can choose ingredients that you want in your dish and aplication will suggest resipes containin these ingredients. Latest recipes used recipes are being saved in browser's memory.
 
 **Live demo:** [Recipes-app](https://vera98d.github.io/Recipes-app/)
