@@ -35,6 +35,7 @@ export default class Modal {
     description.innerHTML = props.description;
     description.style.textAlign = "center";
     description.style.fontSize = "25px";
+    description.style.lineHeight = "120%";
     modal.appendChild(description);
 
     const ingredientsListHeader = document.createElement("p");
