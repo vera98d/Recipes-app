@@ -11,7 +11,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "build:gh": "parcel build --public-url https://coderscamp2021.github.io/team-jo-project-1/",
+    "build:gh": "parcel build --public-url https://vera98d.github.io/Recipes-app/",
     "prepare": "husky install",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
