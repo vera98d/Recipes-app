@@ -28,15 +28,19 @@ export default class Modal {
     const title = document.createElement("h3");
     title.innerText = props.title;
     title.style.textAlign = "center";
+    title.style.fontSize = "35px";
     modal.appendChild(title);
 
     const description = document.createElement("p");
     description.innerHTML = props.description;
     description.style.textAlign = "center";
+    description.style.fontSize = "25px";
     modal.appendChild(description);
 
     const ingredientsListHeader = document.createElement("p");
     ingredientsListHeader.innerText = "Ingredients:";
+    ingredientsListHeader.style.fontSize = "25px";
+    ingredientsListHeader.style.fontWeight = "bold";
     ingredientsListHeader.style.textAlign = "center";
     modal.appendChild(ingredientsListHeader);
 
@@ -47,6 +51,7 @@ export default class Modal {
       const ingredientsListItem = document.createElement("li");
       ingredientsListItem.innerText = props.ingredients[i];
       ingredientsListItem.style.textAlign = "center";
+      ingredientsListItem.style.fontSize = "25px";
       ingredientsList.appendChild(ingredientsListItem);
     }
 
