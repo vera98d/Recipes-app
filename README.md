@@ -11,6 +11,10 @@ This is a project where you can choose ingredients that you want in your dish an
 - [spoonacular API](https://spoonacular.com/food-api)
 - [jest](https://jestjs.io/)
 
+## Setup:
+
+To run the application you have to install dependencies by running `npm install` and then run the project with `npm start` command. To find the recipe it's necessary to type Spoonacular API key. To get the key, you need to [create Spoonacular API account](https://spoonacular.com/food-api/console#Dashboard).
+
 
 ## Team
 The project was created in team cooperation as a part of [CodersCamp](https://www.coderscamp.pl/).
